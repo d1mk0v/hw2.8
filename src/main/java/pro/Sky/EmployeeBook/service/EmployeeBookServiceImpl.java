@@ -16,10 +16,11 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         this.maxEmployees = maxEmployees;
     }
 
-
     public Employee addNewEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        employeeList.add(employee);
+        if (employeeList.size() < maxEmployees) {
+            employeeList.add(employee);
+        }
         return employee;
     }
 
