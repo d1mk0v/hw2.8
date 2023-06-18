@@ -20,7 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //        Перенести из курсовой класс Employee, оставив в нем только поля firstName и lastName, конструктор, геттеры
 //        и методы hashCode, equals, toString.
 //
-//        Шаг 4
+//        Шаг 4+
 //        Создать сервис EmployeeService, который хранит внутри поле с коллекцией сотрудников и константу хранящее
 //        максимальное возможное количество сотрудников в фирме.
 //
