@@ -2,6 +2,9 @@ package pro.Sky.EmployeeBook.service;
 
 import org.springframework.stereotype.Service;
 import pro.Sky.EmployeeBook.Employee;
+import pro.Sky.EmployeeBook.exeption.EmployeeAlreadyAddedException;
+import pro.Sky.EmployeeBook.exeption.EmployeeNotFoundException;
+import pro.Sky.EmployeeBook.exeption.EmployeeStorageIsFullException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +21,17 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
 
     public Employee addNewEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
+
         if (employeeList.size() < maxEmployees) {
             employeeList.add(employee);
+        }
+
+        if (employeeList.size() >= maxEmployees) {
+            throw new EmployeeStorageIsFullException("Штат сотрудников заполнен");
+        }
+
+        if (employeeList.contains(employee)) {
+            throw new EmployeeAlreadyAddedException("Сотрудник уже добавлен");
         }
         return employee;
     }
@@ -31,6 +43,10 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
             employeeList.remove(employee);
             return employee;
         }
+
+        if (!employeeList.contains(employee)) {
+            throw new EmployeeNotFoundException("Сотрудник не найден");
+        }
         return employee;
     }
 
@@ -40,6 +56,10 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         if (employeeList.contains(employee)) {
             return employee;
         }
-        return null;
+
+        if (!employeeList.contains(employee)) {
+            throw new EmployeeNotFoundException("Сотрудник не найден");
+        }
+        return employee;
     }
 }
