@@ -62,4 +62,9 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         }
         return employee;
     }
+
+    @Override
+    public List<Employee> printEmployee() {
+        return employeeList;
+    }
 }

@@ -70,7 +70,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //                 т.е. { "firstName": "Ivan", "lastName": "Ivanov" }, или исключение со статусом EmployeeNotFound,
 //                 если такой сотрудник отсутствует.
 //
-//        Шаг 12
+//        Шаг 12+
 //        Написать метод, который выводит в браузер список всех сотрудников в формате JSON (необходимо вернуть объект списка).
 //
 //        - Подсказки
