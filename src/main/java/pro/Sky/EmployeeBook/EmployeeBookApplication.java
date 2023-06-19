@@ -54,11 +54,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //              4. В метод с поиском сотрудника нужно добавить выброс исключения из шага 6 в ситуации,
 //                 когда сотрудник не найден.
 //
-//        Шаг 10
+//        Шаг 10+
 //        Реализовать EmployeeController, который имеет поле EmployeeService.
 //        Объявить конструктор с этим параметром, чтобы заинджектить EmployeeService в EmployeeController.
 //
-//        Шаг 11
+//        Шаг 11+
 //        Объявить в контроллере 3 метода:
 //              1. По адресу /employee/add?firstName=Ivan&lastName=Ivanov должен вернуться объект Employee в формате JSON,
 //                 т.е. { "firstName": "Ivan", "lastName": "Ivanov" }, или исключение ArrayIsFull в случае переполнения

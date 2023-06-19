@@ -22,16 +22,16 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     public Employee addNewEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
 
-        if (employeeList.size() < maxEmployees) {
-            employeeList.add(employee);
-        }
-
         if (employeeList.size() >= maxEmployees) {
             throw new EmployeeStorageIsFullException("Штат сотрудников заполнен");
         }
 
         if (employeeList.contains(employee)) {
             throw new EmployeeAlreadyAddedException("Сотрудник уже добавлен");
+        }
+
+        if (employeeList.size() < maxEmployees) {
+            employeeList.add(employee);
         }
         return employee;
     }
