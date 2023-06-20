@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-//Ваше задание на сегодня:
+//      Ваше задание на сегодня:
 //
 //        1. Перенести проект с EmployeeBook на Map в качестве хранилища сотрудников, реализовав методы добавления,
 //            удаления и поиска.
