@@ -8,6 +8,7 @@ import pro.Sky.EmployeeBook.Employee;
 import pro.Sky.EmployeeBook.service.EmployeeBookService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/employee")
@@ -19,22 +20,25 @@ public class EmployeeBookController {
     }
 
     @GetMapping(path = "/add")
-    public Employee addNewEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public Employee addNewEmployee(@RequestParam("firstName") String firstName,
+                                   @RequestParam("lastName") String lastName) {
         return employeeBookService.addNewEmployee(firstName, lastName);
     }
 
     @GetMapping(path = "/remove")
-    public Employee removeEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public Employee removeEmployee(@RequestParam("firstName") String firstName,
+                                   @RequestParam("lastName") String lastName) {
         return employeeBookService.removeEmployee(firstName, lastName);
     }
 
     @GetMapping(path = "/find")
-    public Employee findEmployee(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    public Employee findEmployee(@RequestParam("firstName") String firstName,
+                                 @RequestParam("lastName") String lastName) {
         return employeeBookService.findEmployee(firstName, lastName);
     }
 
     @GetMapping()
-    public List<Employee> printEmployee() {
+    public Map<String, Employee> printEmployee() {
         return employeeBookService.printEmployee();
     }
 }

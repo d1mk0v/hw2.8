@@ -6,32 +6,31 @@ import pro.Sky.EmployeeBook.exeption.EmployeeAlreadyAddedException;
 import pro.Sky.EmployeeBook.exeption.EmployeeNotFoundException;
 import pro.Sky.EmployeeBook.exeption.EmployeeStorageIsFullException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeBookServiceImpl implements EmployeeBookService {
-    private final List<Employee> employeeList;
+    private final Map<String, Employee> employees;
     private int maxEmployees = 10;
 
     public EmployeeBookServiceImpl() {
-        this.employeeList = new ArrayList<>();
+        this.employees = new HashMap<>();
         this.maxEmployees = maxEmployees;
     }
 
     public Employee addNewEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
 
-        if (employeeList.size() >= maxEmployees) {
+        if (employees.size() >= maxEmployees) {
             throw new EmployeeStorageIsFullException("Штат сотрудников заполнен");
         }
 
-        if (employeeList.contains(employee)) {
+        if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Сотрудник уже добавлен");
         }
 
-        if (employeeList.size() < maxEmployees) {
-            employeeList.add(employee);
+        if (employees.size() < maxEmployees) {
+            employees.put(employee.getFullName(), employee);
         }
         return employee;
     }
@@ -39,12 +38,12 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     public Employee removeEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
 
-        if (employeeList.contains(employee)) {
-            employeeList.remove(employee);
+        if (employees.containsKey(employee.getFullName())) {
+            employees.remove(employee.getFullName());
             return employee;
         }
 
-        if (!employeeList.contains(employee)) {
+        if (!employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         }
         return employee;
@@ -53,18 +52,18 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     public Employee findEmployee(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
 
-        if (employeeList.contains(employee)) {
-            return employee;
+        if (employees.containsKey(employee.getFullName())) {
+            return employees.get(employee.getFullName());
         }
 
-        if (!employeeList.contains(employee)) {
+        if (!employees.containsKey(employee.getFullName())) {
             throw new EmployeeNotFoundException("Сотрудник не найден");
         }
         return employee;
     }
 
     @Override
-    public List<Employee> printEmployee() {
-        return employeeList;
+    public Map<String, Employee> printEmployee() {
+        return employees;
     }
 }
