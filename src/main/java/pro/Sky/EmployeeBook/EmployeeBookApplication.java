@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-// Цель сегодняшней домашней работы — научиться менять реализацию через циклы на Steam API.
+//        Цель сегодняшней домашней работы — научиться менять реализацию через циклы на Steam API.
 //
 //        Шаг 1. Добавить в поле Employee поля «Зарплата» и «Отдел» из курсовой работы.
 //        Шаг 2. В текущий проект на Spring перенести методы работы с отделами из курсовой работы.

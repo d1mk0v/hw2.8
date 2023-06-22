@@ -21,8 +21,10 @@ public class EmployeeBookController {
 
     @GetMapping(path = "/add")
     public Employee addNewEmployee(@RequestParam("firstName") String firstName,
-                                   @RequestParam("lastName") String lastName) {
-        return employeeBookService.addNewEmployee(firstName, lastName);
+                                   @RequestParam("lastName") String lastName,
+                                   @RequestParam("department") int department,
+                                   @RequestParam("salary") double salary) {
+        return employeeBookService.addNewEmployee(firstName, lastName, department, salary);
     }
 
     @GetMapping(path = "/remove")

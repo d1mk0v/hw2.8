@@ -18,8 +18,8 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         this.maxEmployees = maxEmployees;
     }
 
-    public Employee addNewEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee addNewEmployee(String firstName, String lastName, int department, double salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
 
         if (employees.size() >= maxEmployees) {
             throw new EmployeeStorageIsFullException("Штат сотрудников заполнен");
@@ -35,8 +35,8 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         return employee;
     }
 
-    public Employee removeEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee removeEmployee(String firstName, String lastName, int department, double salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
 
         if (employees.containsKey(employee.getFullName())) {
             employees.remove(employee.getFullName());
@@ -49,8 +49,8 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         return employee;
     }
 
-    public Employee findEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee findEmployee(String firstName, String lastName, int department, double salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
 
         if (employees.containsKey(employee.getFullName())) {
             return employees.get(employee.getFullName());
