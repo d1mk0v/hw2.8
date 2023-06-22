@@ -2,6 +2,7 @@ package pro.Sky.EmployeeBook.service;
 
 import pro.Sky.EmployeeBook.Employee;
 
+import java.util.List;
 import java.util.Map;
 
 public interface EmployeeBookService {
@@ -13,5 +14,6 @@ public interface EmployeeBookService {
 
     Employee maxSalaryByDepartment(int departmentID);
     Employee minSalaryByDepartment(int departmentID);
-    Employee allEmployeeInDepartment(int departmentID);
+    List<Employee> allEmployeeInDepartment(int departmentID);
+    List<Employee> allEmployee();
 }

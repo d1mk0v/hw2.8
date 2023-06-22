@@ -31,8 +31,13 @@ public class EmployeeBookController {
 
     @GetMapping(path = "/all")
     public Employee allEmployeeInDepartment(@RequestParam("departmentID") int departmentID) {
-        return employeeBookService.allEmployeeInDepartment(departmentID);
+        return (Employee) employeeBookService.allEmployeeInDepartment(departmentID);
     }
+
+//    @GetMapping(path = "/all")
+//    public Employee allEmployee() {
+//        return (Employee) employeeBookService.allEmployee();
+//    }
 
     @GetMapping(path = "/add")
     public Employee addNewEmployee(@RequestParam("firstName") String firstName,

@@ -34,10 +34,15 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
                 .orElse(null);
     }
 
-    public Employee allEmployeeInDepartment(int departmentID) {
+    public List<Employee> allEmployeeInDepartment(int departmentID) {
         return employees.values().stream()
                 .filter(e -> Objects.equals(e.getDepartmentID(), departmentID))
-                .collect(Collectors.toCollection());
+                .collect(Collectors.toList());
+    }
+
+    public List<Employee> allEmployee(int departmentID) {
+        return (List<Employee>) employees.values().stream()
+                .collect(Collectors.groupingBy(Employee::getDepartmentID));
     }
 
     public Employee addNewEmployee(String firstName, String lastName, int departmentID, double salary) {
@@ -87,5 +92,10 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
     @Override
     public Map<String, Employee> printEmployee() {
         return employees;
+    }
+
+    @Override
+    public List<Employee> allEmployee() {
+        return null;
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //              3. Возвращать всех сотрудников по отделу.
 //                 /departments/all?departmentId=5
 //              4. Возвращать всех сотрудников с разделением по отделам.
+//                 /departments/all
 
 @SpringBootApplication
 public class EmployeeBookApplication {
