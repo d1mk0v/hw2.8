@@ -5,22 +5,22 @@ import java.util.Objects;
 public class Employee {
     private final String firstName;
     private final String lastName;
-    private int department;
+    private int departmentID;
     private double salary;
 
-    public Employee(String firstName, String lastName, int department, double salary) {
+    public Employee(String firstName, String lastName, int departmentID, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.department = department;
+        this.departmentID = departmentID;
         this.salary = salary;
     }
 
-    public int getDepartment() {
-        return department;
+    public int getDepartmentID() {
+        return departmentID;
     }
 
-    public void setDepartment(int department) {
-        this.department = department;
+    public void setDepartmentID(int departmentID) {
+        this.departmentID = departmentID;
     }
 
     public double getSalary() {
@@ -56,7 +56,7 @@ public class Employee {
         return "Employee{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", department=" + department +
+                ", department=" + departmentID +
                 ", salary=" + salary +
                 '}';
     }

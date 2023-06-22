@@ -7,6 +7,7 @@ import pro.Sky.EmployeeBook.exeption.EmployeeNotFoundException;
 import pro.Sky.EmployeeBook.exeption.EmployeeStorageIsFullException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeBookServiceImpl implements EmployeeBookService {
@@ -18,8 +19,29 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         this.maxEmployees = maxEmployees;
     }
 
-    public Employee addNewEmployee(String firstName, String lastName, int department, double salary) {
-        Employee employee = new Employee(firstName, lastName, department, salary);
+    @Override
+    public Employee maxSalaryByDepartment(int departmentID) {
+        return employees.values().stream()
+                .filter(e -> Objects.equals(e.getDepartmentID(), departmentID))
+                .max(Comparator.comparingDouble(Employee::getSalary))
+                .orElse(null);
+    }
+
+    public Employee minSalaryByDepartment(int departmentID) {
+        return employees.values().stream()
+                .filter(e -> Objects.equals(e.getDepartmentID(), departmentID))
+                .min(Comparator.comparingDouble(Employee::getSalary))
+                .orElse(null);
+    }
+
+    public Employee allEmployeeInDepartment(int departmentID) {
+        return employees.values().stream()
+                .filter(e -> Objects.equals(e.getDepartmentID(), departmentID))
+                .collect(Collectors.toCollection());
+    }
+
+    public Employee addNewEmployee(String firstName, String lastName, int departmentID, double salary) {
+        Employee employee = new Employee(firstName, lastName, departmentID, salary);
 
         if (employees.size() >= maxEmployees) {
             throw new EmployeeStorageIsFullException("Штат сотрудников заполнен");
@@ -35,8 +57,8 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         return employee;
     }
 
-    public Employee removeEmployee(String firstName, String lastName, int department, double salary) {
-        Employee employee = new Employee(firstName, lastName, department, salary);
+    public Employee removeEmployee(String firstName, String lastName, int departmentID, double salary) {
+        Employee employee = new Employee(firstName, lastName, departmentID, salary);
 
         if (employees.containsKey(employee.getFullName())) {
             employees.remove(employee.getFullName());
@@ -49,8 +71,8 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
         return employee;
     }
 
-    public Employee findEmployee(String firstName, String lastName, int department, double salary) {
-        Employee employee = new Employee(firstName, lastName, department, salary);
+    public Employee findEmployee(String firstName, String lastName, int departmentID, double salary) {
+        Employee employee = new Employee(firstName, lastName, departmentID, salary);
 
         if (employees.containsKey(employee.getFullName())) {
             return employees.get(employee.getFullName());

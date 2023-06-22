@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import pro.Sky.EmployeeBook.Employee;
 import pro.Sky.EmployeeBook.service.EmployeeBookService;
 
-import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -19,24 +18,45 @@ public class EmployeeBookController {
         this.employeeBookService = employeeBookService;
     }
 
+    @GetMapping(path = "/max-salary")
+    public Employee maxSalaryByDepartment(@RequestParam("departmentID") int departmentID) {
+        return employeeBookService.maxSalaryByDepartment(departmentID);
+
+    }
+
+    @GetMapping(path = "/min-salary")
+    public Employee minSalaryByDepartment(@RequestParam("departmentID") int departmentID) {
+        return employeeBookService.minSalaryByDepartment(departmentID);
+    }
+
+    @GetMapping(path = "/all")
+    public Employee allEmployeeInDepartment(@RequestParam("departmentID") int departmentID) {
+        return employeeBookService.allEmployeeInDepartment(departmentID);
+    }
+
     @GetMapping(path = "/add")
     public Employee addNewEmployee(@RequestParam("firstName") String firstName,
                                    @RequestParam("lastName") String lastName,
-                                   @RequestParam("department") int department,
+                                   @RequestParam("departmentID") int departmentID,
                                    @RequestParam("salary") double salary) {
-        return employeeBookService.addNewEmployee(firstName, lastName, department, salary);
+
+        return employeeBookService.addNewEmployee(firstName, lastName, departmentID, salary);
     }
 
     @GetMapping(path = "/remove")
     public Employee removeEmployee(@RequestParam("firstName") String firstName,
-                                   @RequestParam("lastName") String lastName) {
-        return employeeBookService.removeEmployee(firstName, lastName);
+                                   @RequestParam("lastName") String lastName,
+                                   @RequestParam("departmentID") int departmentID,
+                                   @RequestParam("salary") double salary) {
+        return employeeBookService.removeEmployee(firstName, lastName, departmentID, salary);
     }
 
     @GetMapping(path = "/find")
     public Employee findEmployee(@RequestParam("firstName") String firstName,
-                                 @RequestParam("lastName") String lastName) {
-        return employeeBookService.findEmployee(firstName, lastName);
+                                 @RequestParam("lastName") String lastName,
+                                 @RequestParam("departmentID") int departmentID,
+                                 @RequestParam("salary") double salary) {
+        return employeeBookService.findEmployee(firstName, lastName, departmentID, salary);
     }
 
     @GetMapping()
