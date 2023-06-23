@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //              2. Возвращать сотрудника с минимальной зарплатой на основе номера отдела.
 //                 /departments/min-salary?departmentId=5
 //              3. Возвращать всех сотрудников по отделу.
-//                 /departments/all?departmentId=5
+//                 /departments/allInDepartment?departmentId=5
 //              4. Возвращать всех сотрудников с разделением по отделам.
 //                 /departments/all
 

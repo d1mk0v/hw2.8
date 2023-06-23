@@ -18,26 +18,26 @@ public class EmployeeBookController {
         this.employeeBookService = employeeBookService;
     }
 
-    @GetMapping(path = "/max-salary")
+    @GetMapping(path = "/departments/max-salary")
     public Employee maxSalaryByDepartment(@RequestParam("departmentID") int departmentID) {
         return employeeBookService.maxSalaryByDepartment(departmentID);
 
     }
 
-    @GetMapping(path = "/min-salary")
+    @GetMapping(path = "/departments/min-salary")
     public Employee minSalaryByDepartment(@RequestParam("departmentID") int departmentID) {
         return employeeBookService.minSalaryByDepartment(departmentID);
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/departments/allInDepartment")
     public Employee allEmployeeInDepartment(@RequestParam("departmentID") int departmentID) {
         return (Employee) employeeBookService.allEmployeeInDepartment(departmentID);
     }
 
-//    @GetMapping(path = "/all")
-//    public Employee allEmployee() {
-//        return (Employee) employeeBookService.allEmployee();
-//    }
+    @GetMapping(path = "/departments/all")
+    public Employee allEmployee() {
+        return (Employee) employeeBookService.allEmployee();
+    }
 
     @GetMapping(path = "/add")
     public Employee addNewEmployee(@RequestParam("firstName") String firstName,
