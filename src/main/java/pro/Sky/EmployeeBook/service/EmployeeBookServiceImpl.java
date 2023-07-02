@@ -7,7 +7,6 @@ import pro.Sky.EmployeeBook.exeption.EmployeeNotFoundException;
 import pro.Sky.EmployeeBook.exeption.EmployeeStorageIsFullException;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class EmployeeBookServiceImpl implements EmployeeBookService {
@@ -16,33 +15,6 @@ public class EmployeeBookServiceImpl implements EmployeeBookService {
 
     public EmployeeBookServiceImpl() {
         this.employees = new HashMap<>();
-        this.maxEmployees = maxEmployees;
-    }
-
-    @Override
-    public Employee maxSalaryByDepartment(int departmentID) {
-        return employees.values().stream()
-                .filter(e -> Objects.equals(e.getDepartmentID(), departmentID))
-                .max(Comparator.comparingDouble(Employee::getSalary))
-                .orElse(null);
-    }
-
-    public Employee minSalaryByDepartment(int departmentID) {
-        return employees.values().stream()
-                .filter(e -> Objects.equals(e.getDepartmentID(), departmentID))
-                .min(Comparator.comparingDouble(Employee::getSalary))
-                .orElse(null);
-    }
-
-    public List<Employee> allEmployeeInDepartment(int departmentID) {
-        return employees.values().stream()
-                .filter(e -> Objects.equals(e.getDepartmentID(), departmentID))
-                .collect(Collectors.toList());
-    }
-
-    public List<Employee> allEmployee(int departmentID) {
-        return (List<Employee>) employees.values().stream()
-                .collect(Collectors.groupingBy(Employee::getDepartmentID));
     }
 
     public Employee addNewEmployee(String firstName, String lastName, int departmentID, double salary) {

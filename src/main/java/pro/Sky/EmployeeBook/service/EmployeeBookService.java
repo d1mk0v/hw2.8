@@ -12,8 +12,5 @@ public interface EmployeeBookService {
 
     Map<String, Employee> printEmployee();
 
-    Employee maxSalaryByDepartment(int departmentID);
-    Employee minSalaryByDepartment(int departmentID);
-    List<Employee> allEmployeeInDepartment(int departmentID);
     List<Employee> allEmployee();
 }
